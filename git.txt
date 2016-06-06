@@ -1,0 +1,40 @@
+﻿git config --global user.name "your name"
+git config --global user.email "email address"
+git init  (初始化)
+git add dir1 (添加文件夹)
+git add filename1 (添加文件)
+git add filename1,filename2 (添加多个文件)
+git rm filename1 (移除文件)
+git commit -m "discript commit content" (提交更新)
+git push origin 分支名  获取更新 from 服务器
+git pull origin 分支名  获取更新 from 服务器
+
+git fetch origin master 从远程获取最新版本到本地
+git diff 分支名
+git merge 分支名    合并
+
+
+
+git reset HEAD
+git reflog
+git status
+git log -l
+git show
+git diff
+git checkout
+    git checkout -b  分支名（创建并切换到分支名下）
+    git checkout 分支名 （切换到分支名下）
+    git checkout filename1 (还原文件)
+git mv f1 newf2   （重命名f1 为 newf2）
+git branch -r (列出所有分支)
+git branch -D 分支名  （删除分支）
+
+
+1. git init
+2. git add .
+3. git commit -am "###"      -------以上3步只是本地提交
+4. git pull origin master
+5. git remote add origin git@xx.xx.xx.xx:repos/xxx/xxx/xxx.git
+6. git push origin 本地分支:远程分支
+
+
