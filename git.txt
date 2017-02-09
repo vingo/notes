@@ -28,8 +28,7 @@ git checkout
 git mv f1 newf2   （重命名f1 为 newf2）
 git branch -r (列出所有分支)
 git branch -D 分支名  （删除分支）
-
-
+git remote -v  查看remote地址
 1. git init
 2. git add .
 3. git commit -am "###"      -------以上3步只是本地提交
