@@ -1,0 +1,45 @@
+redis  数据类型： 
+1. 二进制安全的字符串，
+2. Lists: 按插入顺序排序的字符串元素的集合。他们基本上就是链表（linked lists）。
+3. Sets: 不重复且无序的字符串元素的集合。
+4. Sorted sets,类似Sets,但是每个字符串元素都关联到一个叫score浮动数值（floating number value）。里面的元素总是通过score进行着排序，所以不同的是，它是可以检索的一系列元素。（例如你可能会问：给我前面10个或者后面10个元素）。
+5. Hashes,由field和关联的value组成的map。field和value都是字符串的。这和Ruby、Python的hashes很像。
+6. Bit arrays (或者说 simply bitmaps): 通过特殊的命令，你可以将 String 值当作一系列 bits 处理：可以设置和清除单独的 bits，数出所有设为 1 的 bits 的数量，找到最前的被设为 1 或 0 的 bit，等等。
+7. HyperLogLogs: 这是被用于估计一个 set 中元素数量的概率性的数据结构。别害怕，它比看起来的样子要简单…参见本教程的 HyperLogLog 部分
+
+
+1.字符串
+command. set {key} {value}  
+如： set email hello@163.com
+     get email
+如： getrange {key} {start} {end}
+
+command. setex {key} {seconds} {end}
+如： setex email 60 redis
+     ttl email 
+command. incr {key} 将 key 中储存的数字值增一。
+
+
+2.Hash（哈希）
+command. hmset {key} {key-value pair} 
+如：hmset user1 id 1 name hello age 10
+    hgetall user1
+
+3.List（列表）
+command. lpush {key} {value} 
+如：lpush book redis
+    lrange book 0 10
+
+4.Set（集合）  *: 添加了同一个值两次，第二次插入的元素将被忽略。
+command. sadd {key} {value} 
+如：sadd setbook redis
+    smembers setbook
+5.zset(sorted set：有序集合) *: 每个元素是唯一的,都会关联一个double类型的可以重复分数。
+command. zadd {key} {score} {value} 
+如：sadd zbook 1 redis sadd zbook 2 memcached
+    zrangebyscore zbook 0 100
+
+
+
+
+
