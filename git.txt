@@ -1,5 +1,6 @@
 ﻿git config --global user.name "your name"
 git config --global user.email "email address"
+git clone {git respo}. (复制一份资源)
 git init  (初始化)
 git add dir1 (添加文件夹)
 git add filename1 (添加文件)
