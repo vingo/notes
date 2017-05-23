@@ -7,7 +7,7 @@ git add filename1 (添加文件)
 git add filename1,filename2 (添加多个文件)
 git rm filename1 (移除文件)
 git commit -m "discript commit content" (提交更新)
-git push origin 分支名  获取更新 from 服务器
+git push origin 分支名  提交更新 from 服务器
 git pull origin 分支名  获取更新 from 服务器
 
 git fetch origin master 从远程获取最新版本到本地
