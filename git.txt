@@ -30,6 +30,14 @@ git mv f1 newf2   （重命名f1 为 newf2）
 git branch -r (列出所有分支)
 git branch -D 分支名  （删除分支）
 git remote -v  查看remote地址
+git tags   显示所有tags
+git tags {tag_name}  创建一个tag
+git tags -a {tag_name} -m {tag_desc}  创建一个有描述的tag对象
+git checkout {tag_name}  切换到tag
+git push origin {tag_name} 推送某个标签到远程
+git tag -d {tag_name} 本地 删除标签tag_name
+git push origin :refs/tags/{tag_name} 删除远程标签tag_name
+git push origin --tags 提交所有tags
 1. git init
 2. git add .
 3. git commit -am "###"      -------以上3步只是本地提交
