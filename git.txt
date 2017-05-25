@@ -38,6 +38,8 @@ git push origin {tag_name} 推送某个标签到远程
 git tag -d {tag_name} 本地 删除标签tag_name
 git push origin :refs/tags/{tag_name} 删除远程标签tag_name
 git push origin --tags 提交所有tags
+git mergetool    图形化 编辑文件
+
 1. git init
 2. git add .
 3. git commit -am "###"      -------以上3步只是本地提交
