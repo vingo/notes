@@ -47,6 +47,7 @@ git mergetool    图形化 编辑文件
 5. git remote add origin git@xx.xx.xx.xx:repos/xxx/xxx/xxx.git
    git remote set-url --add origin git@github.com:fancive/curl.git
 6. git push origin 本地分支:远程分支
-logs
+
+git config --global credential.helper store   //在Git Bash输入这个命令就 可以配置一下让GIT记住密码账号。
 
 
