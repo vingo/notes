@@ -1,4 +1,7 @@
 hello
+<<<<<<< HEAD
 update 1
 update 2 
 update 3
+=======
+>>>>>>> parent of 95a2a5d...  update 1,2 of branch server
