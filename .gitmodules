@@ -1,0 +1,3 @@
+[submodule "node_crypto"]
+	path = node_crypto
+	url = https://github.com/vingo/node_crypto.git
