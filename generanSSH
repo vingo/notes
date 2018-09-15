@@ -1,0 +1,4 @@
+1. git config --global user.name "Git账号" git config --global user.email "Git邮箱"  配置账号
+2. ssh-keygen -t rsa -C "your_email@example.com"  --生成文件 id_rsa id_rsa.pub
+3. cat id_rsa.pub  copy and paste to github/git SSH Keys   -- 复制到github的 SSH Keys里
+4. ssh -T git@github.com   --测试是否成功
