@@ -53,3 +53,9 @@ git mergetool    图形化 编辑文件
 git config --global credential.helper store   //在Git Bash输入这个命令就 可以配置一下让GIT记住密码账号。
 
 
+--编码问题
+git config --global i18n.commitencoding utf-8
+git config --global i18n.logoutputencoding utf-8
+export LESSCHARSET=utf-8
+
+
