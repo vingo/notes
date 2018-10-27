@@ -1,0 +1,2 @@
+-- 挂载共享文件夹到linux
+mount -t cifs //{ip}/{folder} -o username={name},password={pwd},vers=2.0
