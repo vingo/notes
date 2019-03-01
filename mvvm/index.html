@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mini mvvm</title>
+    <script>
+    
+        class Vue {
+            constructor(options) {
+                this.options = options
+                this.$data = options.data
+                this.$el = document.querySelector(options.el)
+                this._subscribes = {  //保存订阅者
+
+                } // 结构如： {text: [订阅者1，订阅者1]}
+
+                this.Observe(this.$data)
+                this.Compile(this.$el)
+
+            }
+            //劫持数据
+            Observe(data) {
+                Object.keys(data).forEach(key => {
+                    this._subscribes[key] = []
+                    let val = data[key]
+                    let _subscribes = this._subscribes[key]
+                    Object.defineProperty(this.$data, key, {
+                        get: function(){
+                            return val
+                        },
+                        set: function(newVal) {
+                            if(val == newVal) return
+                            val = newVal
+                            _subscribes.forEach(sub => {
+                                sub.update()
+                            })
+                        }
+                    })
+                })
+            }
+            //解析指令
+            Compile(el) {
+                let nodes = el.children
+                for(var i=0;i<nodes.length; i++){
+                    let node = nodes[i]
+                    if(node.children.length) {
+                        this.Compile(node)
+                    }
+
+                    if(node.hasAttributes('v-text')) {
+                        let attr = node.getAttribute('v-text')
+                        console.log('>>>1>>:', attr)
+                        attr && this._subscribes[attr].push(new Watcher(node, attr, this, 'innerText'))
+                    }
+                    if(node.hasAttributes('v-model')) {
+                        let attr = node.getAttribute('v-model')
+                        console.log('>>>2>>:', attr)
+                        attr && this._subscribes[attr].push(new Watcher(node, attr, this, 'innerHtml'))
+                        let _this = this
+                        node.addEventListener('input', (function() {
+                            return function() {
+                                //更新视图
+                                _this.$data[attr] = node.value
+                                console.log('>>>>xxxx>>>>>>>',_this.$data[attr])
+                            }
+                        })())
+                    }
+                    // if(node.nodType == 1) {
+                    // }
+                }
+            }
+         
+        }
+        class Watcher {
+            constructor(el, vm, mySelf, attr) { // vm ='myText' attr = innerHtml
+                this.el = el
+                this.vm = vm
+                this.mySelf = mySelf
+                this.attr = attr
+                this.update()
+            }
+            update() {
+                this.el[this.attr] = this.mySelf.$data[this.vm]
+
+            }
+
+        }
+    
+    
+    </script>
+</head>
+<body>
+    <div id='app'>
+        <h1>double bind</h1>
+        <div>
+            <div v-text='myText'></div>
+            <div v-text='myBox'></div>
+            <input type="text" v-model="myText">
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+                myText: 'hello world',
+                myBox: 'hello box'
+            }
+        })
+    </script>
+</body>
+</html>
