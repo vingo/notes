@@ -18,3 +18,12 @@ s1.then(data => {
 }, err => {
     console.log(err)
 })
+//chain invoke
+s2 = new pro((res, rej) => {
+    res(1)
+})
+.then(data => {
+    console.log(data)
+}, err => {
+    console.log(err)
+})

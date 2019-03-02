@@ -35,12 +35,18 @@ class myPromise{
     }
 
     then(onFullfilled, onRejected) {
-        console.log('>>>resolved >>>>:', this.status)
+        let promise2
         if(this.status == 'resolved') {
             onFullfilled(this.success)
+            promise2 = new myPromise((resolve, reject) => {
+                resolve(this.success)
+            })
         }
         if(this.status == 'rejected') {
             onRejected ? onRejected(this.failture) : this.catch(this.failture)
+            promise2 = new myPromise((resolve, reject) => {
+                reject(this.failture)
+            })
         }
         if(this.status == 'pending') { // 处理移步等待
             this.onsResolvedCallbacks.push(()=>{
