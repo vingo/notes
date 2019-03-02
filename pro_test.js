@@ -1,11 +1,20 @@
 let pro = require('./myPromise')
-s = new pro((res, rej) => {
-    rej('111')
+// s = new pro((res, rej) => {
+//     rej('111')
+// })
+// s.then(data => {
+//     console.log(data)
+// })
+// .catch(err => {
+//     console.log(err)
+// })
+s1 = new pro((res, rej) => {
+    setTimeout(function() {
+        res('setimeout....')
+    }, 1000)
 })
-console.log(s, s.then)
-s.then(data => {
+s1.then(data => {
     console.log(data)
-})
-.catch(err => {
+}, err => {
     console.log(err)
 })
