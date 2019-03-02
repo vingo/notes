@@ -1,3 +1,4 @@
+
 class myPromise{
     constructor(executor) {
         this.status ='pending'
@@ -25,17 +26,16 @@ class myPromise{
     }
 
     then(onFullfilled, onRejected) {
-        console.log('>>>resolved >>>>:', this.status )
+        console.log('>>>resolved >>>>:', this.status)
         if(this.status == 'resolved') {
-            console.log('>>>resolved >>>>: ')
             onFullfilled(this.success)
         }
         if(this.status == 'rejected') {
-            onRejected(this.failture)
+            onRejected ? onRejected(this.failture) : this.catch(this.failture)
         }
     }
     catch(err) {
-        throw err
+        throw new Error(err)
     }
 }
 

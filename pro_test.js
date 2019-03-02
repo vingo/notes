@@ -1,10 +1,11 @@
 let pro = require('./myPromise')
 s = new pro((res, rej) => {
-    res('111')
+    rej('111')
 })
 console.log(s, s.then)
 s.then(data => {
     console.log(data)
-}, err => {
+})
+.catch(err => {
     console.log(err)
 })
