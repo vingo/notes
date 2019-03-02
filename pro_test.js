@@ -24,6 +24,11 @@ s2 = new pro((res, rej) => {
 })
 .then(data => {
     console.log(data)
+    return  new pro((res, rej) => {
+        return new pro((res, rej) =>{ 
+            res(100)
+        })
+    })
 }, err => {
     console.log(err)
-})
+}).then(console.log, console.log)
