@@ -15,6 +15,6 @@ setInterval(function testMemoryLeak() {
       console.log('leakMessage')
     }
   }
-  // heapdump.writeSnapshot(`${__dirname}.` + Date.now() + '.heapsnapshot');
+  // heapdump.writeSnapshot(`../${__dirname}.` + Date.now() + '.heapsnapshot');
 }, 1000)
 console.log('start exec.............',__filename)
