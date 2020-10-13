@@ -1,0 +1,98 @@
+
+docker 云镜像
+ "registry-mirror": [
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com",
+    "https://8powxi1a.mirror.aliyuncs.com"  阿里云
+  ]
+
+#拉去镜像 
+    docker pull {imageName}
+#查看所有本地镜像
+    docker image ls
+#运行一个镜像容器
+    docker container run {imageName}
+#列出本机正在运行的容器
+    docker container ls
+#列出本机所有容器，包括终止运行的容器
+    docker container ls --all
+#停止本机正在运行的某個容器，停止的容器也会占用硬盘空间资源
+    docker container kill [containID]
+#刪除本机正在运行的某個容器
+    docker container rm [containID]
+#停止与恢复容器
+    docker container stop [containID]
+    docker container restart [containID]
+在使用 -d 参数时，容器启动后会进入后台。此时想要进入容器，可以通过以下指令进入
+    winpty docker attach -it {imageName/imageId} bash  退出后，容器也会退出
+    winpty docker exec -it {imageName/imageId} bash 退出后，容器不会
+
+#创建一个镜像
+    docker image build -t {image Name} .
+
+#导出容器文件
+    docker export {containerID} > {filename}.tar
+#导入容器文件到鏡像
+    cat {filename}.tar | docker import - {imageName/imageId} 本地资源
+    docker import http://www.baidu.com/a.tar {imageName/imageId}  网络资源
+
+#清理所有终止的容器
+    docker container prune
+
+#查詢映射的容器端口
+    docker port {containerID}
+
+docker history (image_name)
+
+在dockerfile 文件中
+RUN命令与CMD命令的区别在哪里？简单说，RUN命令在 image 文件的构建阶段执行，执行结果都会打包进入 image 文件；CMD命令则是在容器启动后执行。另外，一个 Dockerfile 可以包含多个RUN命令，但是只能有一个CMD命令。
+
+route print
+router.exe add -p {ip} MASK {mask} {ip}
+
+//端口不通
+docker network ls
+
+#查看bridge网络的详细配置
+docker network inspect bridge
+
+#查看一個容器的詳細信息
+docker inspect {container_id}
+#查看日志
+docker log {containerID/ContainerName}
+
+#保存更新，并生成新的image
+docker commit -m '描述' -a 'author name' {containerID} {imageNewName}
+
+#本地的myproject目录共享到容器ubuntu 的/data 目录
+docker run --name test -it -p 9000:80 -v /home/myproject:/data ubuntu /bin/bash
+docker run --name test -it -p 9000:80 -v /home/myproject:/data ubuntu /bin/bash -c "cd /work && npm i && npm run dev"
+
+$ docker -it --name smart-centos -p 9000:8089 -p 9999:9999 centos:smart bash
+
+
+
+本地=》容器
+docker cp /www/runoob {containerID}:/www/
+容器=》本地
+docker cp {containerID}:/www/ /www/runoob
+
+docker tag [原镜像名] [复制后镜像名]
+
+docker login 
+docker search 
+
+
+docker pull
+docker push {imageName} 推送
+
+修改源 apt-get /etc/apt/sources.list
+https://www.cnblogs.com/lixiaolun/p/5495911.html
+
+
+
+node -> out/Release/node
+下载node
+wget https://nodejs.org/download/release/latest-v6.x/node-v6.10.0.tar.gz
+下载完成后使用下面的命令解压到/usr/local目录并安装：
+sudo tar --strip-components 1 -xzvf node-v* -C /usr/local
